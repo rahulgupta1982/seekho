@@ -1,0 +1,73 @@
+:root {
+  /* Vibrant kid-friendly color palette */
+  --primary: #FF5E7E;   /* Playful Pink */
+  --secondary: #4FB0FF; /* Bright Blue */
+  --accent: #FFC03F;    /* Sunny Yellow */
+  --success: #4ADE80;   /* Bright Green */
+  --background: #F8FAFC;/* Soft background */
+  
+  /* Text colors */
+  --text-main: #334155;
+  --text-light: #64748B;
+  --text-inverse: #FFFFFF;
+
+  /* Typography */
+  --font-family: 'Fredoka One', 'Nunito', 'Comic Sans MS', sans-serif;
+  
+  /* Sizes & radii */
+  --radius-sm: 12px;
+  --radius-md: 20px;
+  --radius-lg: 32px;
+  --radius-full: 9999px;
+
+  /* Shadows for large, touchable buttons */
+  --shadow-button: 0 4px 0px rgba(0, 0, 0, 0.15);
+  --shadow-button-active: 0 0px 0px rgba(0, 0, 0, 0.15);
+  --shadow-card: 0 8px 24px rgba(0, 0, 0, 0.08);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font-family);
+  background-color: var(--background);
+  color: var(--text-main);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#root {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* Base interactive styles */
+button {
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+  background: none;
+  font-weight: 700;
+  transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* Utility classes for micro-animations */
+.bounce-hover:hover {
+  transform: scale(1.05);
+}
+
+.bounce-active:active {
+  transform: scale(0.95);
+}
