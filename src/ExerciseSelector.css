@@ -136,3 +136,53 @@
         transform: translateY(0);
     }
 }
+
+/* Mobile Adjustments */
+@media (max-width: 600px) {
+    .selector-container {
+        padding: 1rem;
+    }
+
+    .selector-header h1 {
+        font-size: 2rem;
+    }
+
+    .selector-header p {
+        font-size: 1rem;
+    }
+
+    .exercise-sections {
+        gap: 2rem;
+    }
+
+    .difficulty-title {
+        font-size: 1.5rem;
+    }
+
+    .cards-grid {
+        gap: 1.5rem;
+        grid-template-columns: 1fr;
+    }
+
+    .exercise-card {
+        padding: 1.5rem 1rem;
+        max-width: none;
+    }
+
+    .card-icon {
+        width: 60px;
+        height: 60px;
+        font-size: 2rem;
+        margin-bottom: 1rem;
+    }
+
+    .card-header-row {
+        flex-direction: column;
+        gap: 0.5rem;
+        align-items: center;
+    }
+
+    .card-content h3 {
+        font-size: 1.2rem;
+    }
+}

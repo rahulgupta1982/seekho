@@ -1,11 +1,16 @@
 :root {
   /* Vibrant kid-friendly color palette */
-  --primary: #FF5E7E;   /* Playful Pink */
-  --secondary: #4FB0FF; /* Bright Blue */
-  --accent: #FFC03F;    /* Sunny Yellow */
-  --success: #4ADE80;   /* Bright Green */
-  --background: #F8FAFC;/* Soft background */
-  
+  --primary: #FF5E7E;
+  /* Playful Pink */
+  --secondary: #4FB0FF;
+  /* Bright Blue */
+  --accent: #FFC03F;
+  /* Sunny Yellow */
+  --success: #4ADE80;
+  /* Bright Green */
+  --background: #F8FAFC;
+  /* Soft background */
+
   /* Text colors */
   --text-main: #334155;
   --text-light: #64748B;
@@ -13,7 +18,7 @@
 
   /* Typography */
   --font-family: 'Fredoka One', 'Nunito', 'Comic Sans MS', sans-serif;
-  
+
   /* Sizes & radii */
   --radius-sm: 12px;
   --radius-md: 20px;
@@ -51,6 +56,12 @@ body {
   max-width: 800px;
   margin: 0 auto;
   padding: 20px;
+}
+
+@media (max-width: 600px) {
+  #root {
+    padding: 15px;
+  }
 }
 
 /* Base interactive styles */
