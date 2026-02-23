@@ -3,8 +3,30 @@ import confetti from 'canvas-confetti';
 import './Hangman.css';
 
 const WORD_LISTS = {
-    english: ['APPLE', 'BANANA', 'CAT', 'DOG', 'ELEPHANT', 'FLOWER', 'GIRAFFE', 'HOUSE', 'ICE', 'JUMP'],
-    german: ['APFEL', 'BANANE', 'KATZE', 'HUND', 'ELEFANT', 'BLUME', 'GIRAFFE', 'HAUS', 'EIS', 'SPRINGEN']
+    english: [
+        { word: 'APPLE', hint: 'A red or green crunchy fruit 🍎' },
+        { word: 'BANANA', hint: 'A long yellow fruit monkeys love 🍌' },
+        { word: 'CAT', hint: 'A furry pet that says Meow 🐱' },
+        { word: 'DOG', hint: 'A loyal pet that says Woof 🐶' },
+        { word: 'ELEPHANT', hint: 'A huge animal with a long trunk 🐘' },
+        { word: 'FLOWER', hint: 'Something pretty that grows in the garden 🌸' },
+        { word: 'GIRAFFE', hint: 'An animal with a very long neck 🦒' },
+        { word: 'HOUSE', hint: 'A place where you live 🏠' },
+        { word: 'ICE', hint: 'Very cold frozen water 🧊' },
+        { word: 'JUMP', hint: 'To spring off the ground with your feet 👟' }
+    ],
+    german: [
+        { word: 'APFEL', hint: 'Eine rote oder grüne knackige Frucht 🍎' },
+        { word: 'BANANE', hint: 'Eine lange gelbe Frucht, die Affen lieben 🍌' },
+        { word: 'KATZE', hint: 'Ein flauschiges Haustier, das Miau sagt 🐱' },
+        { word: 'HUND', hint: 'Ein treues Haustier, das Wuff sagt 🐶' },
+        { word: 'ELEFANT', hint: 'Ein riesiges Tier mit einem langen Rüssel 🐘' },
+        { word: 'BLUME', hint: 'Etwas Hübsches, das im Garten wächst 🌸' },
+        { word: 'GIRAFFE', hint: 'Ein Tier mit einem sehr langen Hals 🦒' },
+        { word: 'HAUS', hint: 'Ein Ort, an dem du wohnst 🏠' },
+        { word: 'EIS', hint: 'Sehr kaltes gefrorenes Wasser 🧊' },
+        { word: 'SPRINGEN', hint: 'Mit den Füßen vom Boden abheben 👟' }
+    ]
 };
 
 const MAX_LIVES = 7;
@@ -12,10 +34,13 @@ const MAX_LIVES = 7;
 function Hangman({ onBack }) {
     const [language, setLanguage] = useState('english');
     const [word, setWord] = useState('');
+    const [hint, setHint] = useState('');
+    const [showHint, setShowHint] = useState(false);
     const [guessedLetters, setGuessedLetters] = useState(new Set());
     const [wrongGuesses, setWrongGuesses] = useState(0);
     const [status, setStatus] = useState('playing'); // 'playing' | 'won' | 'lost' | 'custom-entry'
-    const [customInput, setCustomInput] = useState('');
+    const [customWord, setCustomWord] = useState('');
+    const [customHint, setCustomHint] = useState('');
 
     useEffect(() => {
         resetGame();
@@ -23,22 +48,28 @@ function Hangman({ onBack }) {
 
     const resetGame = () => {
         const list = WORD_LISTS[language];
-        const randomWord = list[Math.floor(Math.random() * list.length)];
-        setWord(randomWord);
+        const randomItem = list[Math.floor(Math.random() * list.length)];
+        setWord(randomItem.word);
+        setHint(randomItem.hint);
+        setShowHint(false);
         setGuessedLetters(new Set());
         setWrongGuesses(0);
         setStatus('playing');
-        setCustomInput('');
+        setCustomWord('');
+        setCustomHint('');
     };
 
     const startCustomGame = (e) => {
         e.preventDefault();
-        if (!customInput.trim()) return;
-        setWord(customInput.trim().toUpperCase());
+        if (!customWord.trim()) return;
+        setWord(customWord.trim().toUpperCase());
+        setHint(customHint.trim() || 'A special secret word! 🤫');
+        setShowHint(false);
         setGuessedLetters(new Set());
         setWrongGuesses(0);
         setStatus('playing');
-        setCustomInput('');
+        setCustomWord('');
+        setCustomHint('');
     };
 
     const handleGuess = (letter) => {
@@ -104,15 +135,22 @@ function Hangman({ onBack }) {
                 {status === 'custom-entry' ? (
                     <div className="custom-entry-box bounce-in">
                         <h3>Parent Mode 🤫</h3>
-                        <p>Type a word for your daughter to guess!</p>
+                        <p>Type a word and a secret hint!</p>
                         <form onSubmit={startCustomGame}>
                             <input
                                 type="password"
-                                value={customInput}
-                                onChange={(e) => setCustomInput(e.target.value.toUpperCase())}
+                                value={customWord}
+                                onChange={(e) => setCustomWord(e.target.value.toUpperCase())}
                                 placeholder="TYPE WORD HERE..."
                                 autoFocus
                                 className="custom-word-input"
+                            />
+                            <input
+                                type="text"
+                                value={customHint}
+                                onChange={(e) => setCustomHint(e.target.value)}
+                                placeholder="TYPE HINT HERE (Optional)"
+                                className="custom-hint-input"
                             />
                             <div className="entry-btns">
                                 <button type="submit" className="play-again-btn">Start Game! 🚀</button>
@@ -128,6 +166,18 @@ function Hangman({ onBack }) {
                                     {i < MAX_LIVES - wrongGuesses ? '❤️' : '💔'}
                                 </span>
                             ))}
+                        </div>
+
+                        <div className="hint-section">
+                            {showHint ? (
+                                <div className="hint-bubble bounce-in">
+                                    <strong>Hint:</strong> {hint}
+                                </div>
+                            ) : (
+                                <button className="hint-btn bounce-hover" onClick={() => setShowHint(true)}>
+                                    💡 Need a hint?
+                                </button>
+                            )}
                         </div>
 
                         <div className="word-display">

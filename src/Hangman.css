@@ -91,19 +91,58 @@
 
 .custom-word-input {
     width: 100%;
-    padding: 1.5rem;
+    padding: 1.2rem;
     font-size: 2rem;
     border-radius: var(--radius-md);
     border: 3px solid #eee;
-    margin: 2rem 0;
+    margin: 1rem 0;
     text-align: center;
     font-family: 'Fredoka One', cursive;
     letter-spacing: 5px;
 }
 
-.custom-word-input:focus {
+.custom-hint-input {
+    width: 100%;
+    padding: 1rem;
+    font-size: 1.2rem;
+    border-radius: var(--radius-md);
+    border: 3px solid #eee;
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+.custom-word-input:focus,
+.custom-hint-input:focus {
     border-color: var(--secondary);
     outline: none;
+}
+
+.hint-section {
+    margin-bottom: 1rem;
+    min-height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.hint-btn {
+    background: #FFF9C4;
+    padding: 0.8rem 1.5rem;
+    border-radius: var(--radius-full);
+    font-weight: 600;
+    color: #FBC02D;
+    box-shadow: 0 4px 0 #FDD835;
+}
+
+.hint-bubble {
+    background: #FFF9C4;
+    padding: 1rem 2rem;
+    border-radius: 20px;
+    font-size: 1.4rem;
+    color: #795548;
+    max-width: 600px;
+    box-shadow: var(--shadow-sm);
+    border: 2px dashed #FBC02D;
 }
 
 .entry-btns {
