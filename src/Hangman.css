@@ -24,124 +24,151 @@
     box-shadow: var(--shadow-button);
 }
 
+.header-controls {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+
+.custom-mode-btn {
+    padding: 0.5rem 1rem;
+    border-radius: var(--radius-full);
+    background: white;
+    box-shadow: var(--shadow-sm);
+    font-weight: 600;
+    transition: all 0.2s;
+}
+
+.custom-mode-btn:hover {
+    transform: scale(1.05);
+    background: var(--accent);
+    color: white;
+}
+
 .hangman-area {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 2rem;
+    gap: 1.5rem;
     padding: 2rem;
+    max-width: 900px;
+    margin: 0 auto;
 }
 
-.visual-stage {
-    height: 200px;
-    width: 100%;
-    position: relative;
+.lives-display {
     display: flex;
-    justify-content: center;
-    align-items: flex-end;
+    gap: 0.5rem;
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
 }
 
-.balloon-visual {
-    position: relative;
-    width: 200px;
-    height: 200px;
+.heart-life {
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
-.balloon {
-    font-size: 5rem;
-    position: absolute;
-    bottom: 80px;
-    left: 50%;
-    transform: translateX(-50%);
-    transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+.heart-life.broken {
+    transform: scale(0.8);
+    opacity: 0.6;
+    filter: grayscale(1);
 }
 
-.basket {
+.custom-entry-box {
+    background: white;
+    padding: 3rem;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-card);
+    text-align: center;
+    width: 100%;
+    max-width: 500px;
+}
+
+.custom-entry-box h3 {
+    font-family: 'Fredoka One', cursive;
     font-size: 2rem;
-    position: absolute;
-    bottom: 40px;
-    left: 50%;
-    transform: translateX(-50%);
+    color: var(--text-main);
+    margin-bottom: 1rem;
 }
 
-.cactus {
-    font-size: 3rem;
-    position: absolute;
-    bottom: 0;
-    right: -100px;
-    transition: all 0.5s ease;
+.custom-word-input {
+    width: 100%;
+    padding: 1.5rem;
+    font-size: 2rem;
+    border-radius: var(--radius-md);
+    border: 3px solid #eee;
+    margin: 2rem 0;
+    text-align: center;
+    font-family: 'Fredoka One', cursive;
+    letter-spacing: 5px;
 }
 
-/* Animations for wrong guesses */
-.wrong-1 .cactus {
-    right: -60px;
+.custom-word-input:focus {
+    border-color: var(--secondary);
+    outline: none;
 }
 
-.wrong-2 .cactus {
-    right: -20px;
-}
-
-.wrong-3 .cactus {
-    right: 20px;
-}
-
-.wrong-4 .cactus {
-    right: 40px;
-}
-
-.wrong-5 .cactus {
-    right: 60px;
-}
-
-.wrong-6 .balloon {
-    transform: translateX(-50%) scale(0);
-    opacity: 0;
-}
-
-.wrong-6 .cactus {
-    right: 80px;
+.entry-btns {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
 }
 
 .word-display {
     display: flex;
-    gap: 1rem;
-    margin: 2rem 0;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.8rem;
+    margin-bottom: 3rem;
 }
 
 .letter-slot {
-    font-size: 3rem;
+    font-size: 3.5rem;
     font-family: 'Fredoka One', cursive;
-    border-bottom: 5px solid var(--text-main);
-    min-width: 50px;
+    border-bottom: 6px solid var(--text-main);
+    min-width: 55px;
     text-align: center;
     color: var(--text-main);
 }
 
+.letter-slot.space {
+    border-bottom: none;
+    min-width: 30px;
+}
+
 .keyboard {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(50px, 1fr));
-    gap: 0.5rem;
-    max-width: 600px;
-    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.6rem;
+    max-width: 800px;
 }
 
 .key {
     background: white;
-    padding: 1rem 0.5rem;
-    border-radius: var(--radius-sm);
-    font-size: 1.5rem;
-    box-shadow: var(--shadow-button);
+    min-width: 55px;
+    height: 60px;
+    border-radius: 12px;
+    font-size: 1.6rem;
+    font-weight: bold;
+    box-shadow: 0 4px 0 #ddd;
+    transition: all 0.1s;
+}
+
+.key:active {
+    transform: translateY(2px);
+    box-shadow: 0 2px 0 #ddd;
 }
 
 .key.correct {
-    background: var(--success);
+    background: #81C784;
     color: white;
+    box-shadow: 0 4px 0 #66BB6A;
 }
 
 .key.wrong {
     background: #FFCDD2;
-    color: #C62828;
-    text-decoration: line-through;
+    color: #E57373;
+    opacity: 0.6;
+    box-shadow: 0 4px 0 #EF9A9A;
 }
 
 .game-result {
@@ -161,21 +188,19 @@
 
 /* Mobile Adjustments */
 @media (max-width: 600px) {
-    .word-display {
-        gap: 0.5rem;
+    .lives-display {
+        font-size: 1.8rem;
     }
 
     .letter-slot {
         font-size: 2rem;
-        min-width: 30px;
+        min-width: 35px;
+        border-bottom-width: 4px;
     }
 
     .key {
-        padding: 0.8rem 0.4rem;
+        min-width: 40px;
+        height: 50px;
         font-size: 1.2rem;
-    }
-
-    .keyboard {
-        grid-template-columns: repeat(7, 1fr);
     }
 }
