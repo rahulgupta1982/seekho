@@ -2,8 +2,8 @@ import { useState } from 'react';
 import './Onboarding.css';
 
 function Onboarding({ onComplete }) {
-    const [name, setName] = useState('');
-    const [age, setAge] = useState('');
+    const [name, setName] = useState('Ritika');
+    const [age, setAge] = useState('7');
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -26,7 +26,7 @@ function Onboarding({ onComplete }) {
                             id="name"
                             value={name}
                             onChange={(e) => setName(e.target.value)}
-                            placeholder="e.g. Mia"
+                            placeholder="e.g. Ritika"
                             required
                             className="fun-input"
                         />
@@ -40,7 +40,7 @@ function Onboarding({ onComplete }) {
                                 id="age"
                                 value={age}
                                 onChange={(e) => setAge(e.target.value)}
-                                placeholder="e.g. 10"
+                                placeholder="e.g. 7"
                                 min="1"
                                 max="100"
                                 required
