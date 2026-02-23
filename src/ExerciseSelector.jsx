@@ -9,6 +9,7 @@ const EXERCISES = [
         maxAge: 99,
         ageLabel: '4-5 Years',
         difficulty: 'easy',
+        subject: 'math',
         icon: '🎈',
         color: 'var(--primary)'
     },
@@ -20,6 +21,7 @@ const EXERCISES = [
         maxAge: 99,
         ageLabel: '5-6 Years',
         difficulty: 'medium',
+        subject: 'math',
         icon: '💖',
         color: '#FF3B60'
     },
@@ -31,6 +33,7 @@ const EXERCISES = [
         maxAge: 99,
         ageLabel: '6+ Years',
         difficulty: 'hard',
+        subject: 'math',
         icon: '💘',
         color: '#FF1493'
     },
@@ -42,6 +45,7 @@ const EXERCISES = [
         maxAge: 99,
         ageLabel: '5-6 Years',
         difficulty: 'medium',
+        subject: 'math',
         icon: '➕',
         color: 'var(--secondary)'
     },
@@ -53,15 +57,28 @@ const EXERCISES = [
         maxAge: 99,
         ageLabel: '6+ Years',
         difficulty: 'medium',
+        subject: 'math',
         icon: '➖',
         color: 'var(--success)'
+    },
+    {
+        id: 'hangman',
+        title: 'Word Wizard (Hangman)',
+        description: 'Guess the hidden words!',
+        minAge: 6,
+        maxAge: 99,
+        ageLabel: '6+ Years',
+        difficulty: 'medium',
+        subject: 'language',
+        icon: '🔤',
+        color: '#9C27B0'
     }
 ];
 
-function ExerciseSelector({ user, onSelect }) {
-    // Filter exercises based on age
+function ExerciseSelector({ user, subject, onSelect, onBack }) {
+    // Filter exercises based on age and subject
     const availableExercises = EXERCISES.filter(
-        (ex) => user.age >= ex.minAge && user.age <= ex.maxAge
+        (ex) => user.age >= ex.minAge && user.age <= ex.maxAge && ex.subject === subject
     );
 
     // Group exercises by difficulty
@@ -77,11 +94,19 @@ function ExerciseSelector({ user, onSelect }) {
         hard: '🔴 Hard'
     };
 
+    const subjectTitles = {
+        math: 'Math Explorer 🚀',
+        language: 'Language Legends 📚'
+    };
+
     return (
         <div className="selector-container fade-in">
             <header className="selector-header">
-                <h1 className="bounce-in">Hi {user.name}! 👋</h1>
-                <p>What would you like to play today?</p>
+                <button className="back-btn" onClick={onBack} style={{ position: 'absolute', left: '20px', top: '20px' }}>
+                    ← Back
+                </button>
+                <h1 className="bounce-in">{subjectTitles[subject]}</h1>
+                <p>Hi {user.name}! What would you like to play today?</p>
             </header>
 
             <div className="exercise-sections">

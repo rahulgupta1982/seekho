@@ -1,0 +1,181 @@
+.hangman-container {
+    background: linear-gradient(to bottom, #E0F7FA 0%, #B2EBF2 100%);
+    min-height: 100vh;
+}
+
+.language-toggle {
+    display: flex;
+    gap: 1rem;
+    background: rgba(255, 255, 255, 0.5);
+    padding: 0.5rem;
+    border-radius: var(--radius-full);
+}
+
+.language-toggle button {
+    padding: 0.5rem 1rem;
+    border-radius: var(--radius-full);
+    font-size: 1rem;
+    transition: all 0.2s;
+}
+
+.language-toggle button.active {
+    background: var(--secondary);
+    color: white;
+    box-shadow: var(--shadow-button);
+}
+
+.hangman-area {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+    padding: 2rem;
+}
+
+.visual-stage {
+    height: 200px;
+    width: 100%;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+}
+
+.balloon-visual {
+    position: relative;
+    width: 200px;
+    height: 200px;
+}
+
+.balloon {
+    font-size: 5rem;
+    position: absolute;
+    bottom: 80px;
+    left: 50%;
+    transform: translateX(-50%);
+    transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.basket {
+    font-size: 2rem;
+    position: absolute;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.cactus {
+    font-size: 3rem;
+    position: absolute;
+    bottom: 0;
+    right: -100px;
+    transition: all 0.5s ease;
+}
+
+/* Animations for wrong guesses */
+.wrong-1 .cactus {
+    right: -60px;
+}
+
+.wrong-2 .cactus {
+    right: -20px;
+}
+
+.wrong-3 .cactus {
+    right: 20px;
+}
+
+.wrong-4 .cactus {
+    right: 40px;
+}
+
+.wrong-5 .cactus {
+    right: 60px;
+}
+
+.wrong-6 .balloon {
+    transform: translateX(-50%) scale(0);
+    opacity: 0;
+}
+
+.wrong-6 .cactus {
+    right: 80px;
+}
+
+.word-display {
+    display: flex;
+    gap: 1rem;
+    margin: 2rem 0;
+}
+
+.letter-slot {
+    font-size: 3rem;
+    font-family: 'Fredoka One', cursive;
+    border-bottom: 5px solid var(--text-main);
+    min-width: 50px;
+    text-align: center;
+    color: var(--text-main);
+}
+
+.keyboard {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(50px, 1fr));
+    gap: 0.5rem;
+    max-width: 600px;
+    width: 100%;
+}
+
+.key {
+    background: white;
+    padding: 1rem 0.5rem;
+    border-radius: var(--radius-sm);
+    font-size: 1.5rem;
+    box-shadow: var(--shadow-button);
+}
+
+.key.correct {
+    background: var(--success);
+    color: white;
+}
+
+.key.wrong {
+    background: #FFCDD2;
+    color: #C62828;
+    text-decoration: line-through;
+}
+
+.game-result {
+    text-align: center;
+}
+
+.game-result h2 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    color: var(--text-main);
+}
+
+.game-result p {
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+/* Mobile Adjustments */
+@media (max-width: 600px) {
+    .word-display {
+        gap: 0.5rem;
+    }
+
+    .letter-slot {
+        font-size: 2rem;
+        min-width: 30px;
+    }
+
+    .key {
+        padding: 0.8rem 0.4rem;
+        font-size: 1.2rem;
+    }
+
+    .keyboard {
+        grid-template-columns: repeat(7, 1fr);
+    }
+}

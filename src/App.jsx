@@ -1,23 +1,31 @@
 import { useState } from 'react';
 import Onboarding from './Onboarding';
+import SubjectSelector from './SubjectSelector';
 import ExerciseSelector from './ExerciseSelector';
 import OddEvenGame from './OddEvenGame';
 import VerliebteZahlen from './VerliebteZahlen';
+import Hangman from './Hangman';
 import './index.css';
 
 
 
 function App() {
-  const [userProfile, setUserProfile] = useState(null);
-  const [currentScreen, setCurrentScreen] = useState('onboarding'); // 'onboarding', 'selector', 'playing'
+  const [user, setUser] = useState(null);
+  const [currentScreen, setCurrentScreen] = useState('onboarding'); // 'onboarding' | 'subject-selector' | 'selector' | 'playing'
+  const [activeSubject, setActiveSubject] = useState(null);
   const [activeGame, setActiveGame] = useState(null);
 
-  const handleOnboardingComplete = (profile) => {
-    setUserProfile(profile);
+  const handleOnboardingComplete = (userData) => {
+    setUser(userData);
+    setCurrentScreen('subject-selector');
+  };
+
+  const handleSubjectSelect = (subject) => {
+    setActiveSubject(subject);
     setCurrentScreen('selector');
   };
 
-  const handleExerciseSelect = (gameId) => {
+  const handleGameSelect = (gameId) => {
     setActiveGame(gameId);
     setCurrentScreen('playing');
   };
@@ -28,8 +36,17 @@ function App() {
         <Onboarding onComplete={handleOnboardingComplete} />
       )}
 
+      {currentScreen === 'subject-selector' && (
+        <SubjectSelector onSelect={handleSubjectSelect} />
+      )}
+
       {currentScreen === 'selector' && (
-        <ExerciseSelector user={userProfile} onSelect={handleExerciseSelect} />
+        <ExerciseSelector
+          user={user}
+          subject={activeSubject}
+          onSelect={handleGameSelect}
+          onBack={() => setCurrentScreen('subject-selector')}
+        />
       )}
 
       {currentScreen === 'playing' && activeGame === 'odd-even' && (
@@ -44,7 +61,25 @@ function App() {
         <VerliebteZahlen onBack={() => setCurrentScreen('selector')} targetSum={20} />
       )}
 
-      {currentScreen === 'playing' && !['odd-even', 'verliebte-zahlen', 'verliebte-zahlen-20'].includes(activeGame) && (
+      {currentScreen === 'playing' && activeGame === 'hangman' && (
+        <Hangman onBack={() => setCurrentScreen('selector')} />
+      )}
+
+      {currentScreen === 'playing' && (activeGame === 'addition' || activeGame === 'subtraction') && (
+        <div style={{ textAlign: 'center', marginTop: '50px' }}>
+          <h2>{activeGame.replace('-', ' ')}</h2>
+          <p>This game is under construction! 🚧</p>
+          <button
+            className="back-btn"
+            onClick={() => setCurrentScreen('selector')}
+            style={{ marginTop: '20px', padding: '10px 20px', fontSize: '1.2rem' }}
+          >
+            ← Back to Games
+          </button>
+        </div>
+      )}
+
+      {currentScreen === 'playing' && !['odd-even', 'verliebte-zahlen', 'verliebte-zahlen-20', 'hangman', 'addition', 'subtraction'].includes(activeGame) && (
         <div style={{ textAlign: 'center', marginTop: '50px' }}>
           <h2>{activeGame.replace('-', ' ')}</h2>
           <p>This game is under construction! 🚧</p>

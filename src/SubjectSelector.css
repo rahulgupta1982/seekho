@@ -1,0 +1,105 @@
+.subject-selector-container {
+    padding: 2rem;
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.subject-header {
+    margin-bottom: 4rem;
+}
+
+.subject-header h1 {
+    font-size: 3rem;
+    color: var(--text-main);
+    margin-bottom: 1rem;
+}
+
+.subject-header p {
+    font-size: 1.5rem;
+    color: var(--text-light);
+}
+
+.subject-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 3rem;
+    justify-items: center;
+}
+
+.subject-card {
+    background: white;
+    border-radius: var(--radius-lg);
+    padding: 3rem 2rem;
+    width: 100%;
+    max-width: 350px;
+    box-shadow: var(--shadow-card);
+    border: 6px solid transparent;
+    transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+}
+
+.subject-card:hover {
+    border-color: var(--subject-color);
+    transform: translateY(-15px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+}
+
+.subject-icon {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 4rem;
+    margin-bottom: 2rem;
+    color: white;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.subject-content h3 {
+    font-family: 'Fredoka One', cursive;
+    font-size: 2rem;
+    color: var(--text-main);
+    margin-bottom: 1rem;
+}
+
+.subject-content p {
+    font-size: 1.2rem;
+    color: var(--text-light);
+    line-height: 1.5;
+}
+
+/* Mobile Adjustments */
+@media (max-width: 600px) {
+    .subject-header h1 {
+        font-size: 2rem;
+    }
+
+    .subject-header p {
+        font-size: 1.2rem;
+    }
+
+    .subject-grid {
+        gap: 2rem;
+        grid-template-columns: 1fr;
+    }
+
+    .subject-card {
+        padding: 2rem 1.5rem;
+    }
+
+    .subject-icon {
+        width: 100px;
+        height: 100px;
+        font-size: 3.5rem;
+    }
+
+    .subject-content h3 {
+        font-size: 1.5rem;
+    }
+}
