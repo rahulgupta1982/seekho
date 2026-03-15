@@ -96,6 +96,7 @@ function RapidFire({ onBack, level }) {
   };
 
   const handleChange = (e) => {
+      if (feedback !== null) return; // Prevent input while animating
       setUserAnswer(e.target.value);
   }
 
@@ -132,8 +133,10 @@ function RapidFire({ onBack, level }) {
                         type="number" 
                         value={userAnswer}
                         onChange={handleChange}
-                        readOnly={feedback !== null}
                         className="answer-input"
+                        inputMode="numeric"
+                        pattern="[0-9]*"
+                        autoComplete="off"
                     />
                 </form>
             </div>
