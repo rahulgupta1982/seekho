@@ -5,6 +5,7 @@ import ExerciseSelector from './ExerciseSelector';
 import OddEvenGame from './OddEvenGame';
 import VerliebteZahlen from './VerliebteZahlen';
 import Hangman from './Hangman';
+import RapidFire from './RapidFire';
 import './index.css';
 
 
@@ -65,6 +66,14 @@ function App() {
         <Hangman onBack={() => setCurrentScreen('selector')} />
       )}
 
+      {currentScreen === 'playing' && activeGame === 'rapid-fire-1' && (
+        <RapidFire onBack={() => setCurrentScreen('selector')} level={1} />
+      )}
+
+      {currentScreen === 'playing' && activeGame === 'rapid-fire-2' && (
+        <RapidFire onBack={() => setCurrentScreen('selector')} level={2} />
+      )}
+
       {currentScreen === 'playing' && (activeGame === 'addition' || activeGame === 'subtraction') && (
         <div style={{ textAlign: 'center', marginTop: '50px' }}>
           <h2>{activeGame.replace('-', ' ')}</h2>
@@ -79,7 +88,7 @@ function App() {
         </div>
       )}
 
-      {currentScreen === 'playing' && !['odd-even', 'verliebte-zahlen', 'verliebte-zahlen-20', 'hangman', 'addition', 'subtraction'].includes(activeGame) && (
+      {currentScreen === 'playing' && !['odd-even', 'verliebte-zahlen', 'verliebte-zahlen-20', 'hangman', 'addition', 'subtraction', 'rapid-fire-1', 'rapid-fire-2'].includes(activeGame) && (
         <div style={{ textAlign: 'center', marginTop: '50px' }}>
           <h2>{activeGame.replace('-', ' ')}</h2>
           <p>This game is under construction! 🚧</p>

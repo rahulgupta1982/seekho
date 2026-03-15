@@ -62,6 +62,30 @@ const EXERCISES = [
         color: 'var(--success)'
     },
     {
+        id: 'rapid-fire-1',
+        title: 'Rapid Fire (Level 1)',
+        description: 'Fast addition with single digits! ⏱️',
+        minAge: 5,
+        maxAge: 99,
+        ageLabel: '5+ Years',
+        difficulty: 'medium',
+        subject: 'math',
+        icon: '⚡',
+        color: '#FF9800'
+    },
+    {
+        id: 'rapid-fire-2',
+        title: 'Rapid Fire (Level 2)',
+        description: 'Fast addition with double digits! ⏱️',
+        minAge: 7,
+        maxAge: 99,
+        ageLabel: '7+ Years',
+        difficulty: 'hard',
+        subject: 'math',
+        icon: '🔥',
+        color: '#FF5722'
+    },
+    {
         id: 'hangman',
         title: 'Word Wizard (Hangman)',
         description: 'Guess the hidden words!',
